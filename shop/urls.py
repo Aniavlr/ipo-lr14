@@ -20,7 +20,8 @@ from myapp.views import main_page, about, ofiston
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('main/', main_page),
-    path('main/about/', about),
-    path('main/officeton/', ofiston),
+    # path('main/', main_page),
+    # path('main/about/', about),
+    # path('main/officeton/', ofiston),
+    path('',include('myapp.urls'))
 ]
