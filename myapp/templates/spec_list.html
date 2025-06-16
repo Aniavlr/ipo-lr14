@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список квалификаций</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .qualification-list {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .qualification-card {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+
+        .qualification-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .type-badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 10px;
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .qualification-title {
+            margin: 0;
+            font-size: 1.1em;
+        }
+
+        .qualification-code {
+            color: #666;
+            font-family: monospace;
+        }
+
+        .qualification-description {
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Список квалификаций и специальностей</h1>
+
+        <div class="qualification-list">
+            {% for qual in qualifications %}
+            <a href="/spec/{{ qual.id }}/">
+                <div class="qualification-card">
+                    <div class="qualification-header">
+                        <span class="type-badge">
+                            {% if qual.type == 'skill' %}Квалификация{% else %}Специальность{% endif %}
+                        </span>
+                        <span class="qualification-code">{{ qual.code }}</span>
+                    </div>
+                    <h3 class="qualification-title">{{ qual.title }}</h3>
+                    {% if qual.description %}
+                    <p class="qualification-description">{{ qual.description|truncatechars:100 }}</p>
+                    {% endif %}
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
